@@ -1,13 +1,16 @@
-import './App.css'
+import { Outlet } from "react-router-dom";
+import "./App.css";
+import { Clients } from "./pages/Clients";
+import { CreateInvoice } from "./pages/CreateInvoice";
 
 function App() {
-  
-
   return (
-    <>
-     <h1 className='bg-red-500'>Well-Come</h1>
-    </>
-  )
+    <main>
+      <div>
+        <Outlet />
+      </div>
+    </main>
+  );
 }
 
-export default App
+export default App;
