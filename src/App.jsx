@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="flex flex-1 overflow-hidden">
       <Sidebar />
-      <main>
+      <main className="w-full">
         <Outlet />
       </main>
     </div>
