@@ -52,15 +52,15 @@ export const Table = () => {
   ];
 
   return (
-    <div className="border border-slate-300 shadow-lg rounded-md p-5 font-serif">
+    <div className="border  text-slate-900 border-slate-300 shadow-lg rounded-md p-5 font-serif">
       <div className=" flex justify-between mb-5">
         <h2 className="text-lg font-semibold">Recent Invioce</h2>
         <span>Show All</span>
       </div>
       <div className="overflow-x-auto h-80">
         <table className=" w-full text-left border-collapse">
-          <thead className="">
-            <tr className="font-serif bg-slate-300">
+          <thead>
+            <tr className="font-serif bg-slate-300 text-slate-900 ">
               <th className="p-4">Invoice No</th>
               <th className="p-4">Client Name</th>
               <th className="p-4">Amount</th>
