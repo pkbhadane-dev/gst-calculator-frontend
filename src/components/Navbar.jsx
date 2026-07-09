@@ -42,8 +42,6 @@ export const Navbar = () => {
       <div className=" flex items-center gap-5">
         <Link>Login</Link>
         <span className=" sm:hidden" onClick={()=>setShowMenu(!showMenu)}>
-            {console.log(showMenu)
-            }
             <TiThMenu size={28} className="text-slate-50"/>
         </span>
       </div>
