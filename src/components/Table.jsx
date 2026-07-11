@@ -3,7 +3,7 @@ export const Table = () => {
     {
       _id: "1",
       invoiceNumber: "INV-2026-001",
-      clientName: "Ramesh Kirana Store", // Client मॉडेलमधून पॉप्युलेट होईल पुढे जाऊन
+      clientName: "Ramesh Kirana Store", 
       grandTotal: 15450,
       createdAt: "2026-07-06",
     },
