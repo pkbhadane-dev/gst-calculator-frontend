@@ -4,32 +4,38 @@ import { Input } from "../components/Input";
 export const Clients = () => {
   const [displayForm, setDisplayForm] = useState(false);
 
-  const dummyClients = [
-    {
-      _id: "1",
-      clientName: "Ramesh Kirana Store",
-      state: "Maharashtra",
-      createdAt: "2026-07-06",
-    },
-    {
-      _id: "2",
-      clientName: "TechNova Solutions",
-      state: "Gujarath",
-      createdAt: "2026-07-05",
-    },
-    {
-      _id: "3",
-      clientName: "Mahesh Traders",
-      state: "M.P",
-      createdAt: "2026-07-02",
-    },
-    {
-      _id: "4",
-      clientName: "Ramesh Traders",
-      state: "U.P",
-      createdAt: "2026-07-02",
-    },
-  ];
+  const [clientData, setClientData] = useState({
+    clientName: "",
+    email: "",
+    phone: "",
+    gstin: "",
+    address: "",
+    state: "",
+  });
+
+  const [dummyClients, setDummyClients] = useState([]);
+
+  const handleOnChange = (e) => {
+    setClientData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    setDummyClients((prev) => [...prev, clientData]);
+    setClientData({
+      clientName: "",
+      email: "",
+      phone: "",
+      gstin: "",
+      address: "",
+      state: "",
+    });
+    setDisplayForm(false);
+  };
+
+  
 
   return (
     <div className="relative h-screen bg-gradient-to-tr from-slate-100 via-slate-200 to-slate-400 p-5 overflow-auto">
@@ -42,7 +48,7 @@ export const Clients = () => {
           Add New Client
         </span>
       </div>
-      <div className="z-100 border w-full text-slate-900 border-slate-300  mt-8 shadow-lg rounded-md p-5 overflow-auto">
+      <div className=" border w-full text-slate-900 border-slate-300  mt-8 shadow-lg rounded-md p-5 overflow-auto">
         <h2 className="text-2xl bg-slate-800 w-fit px-4 py-2 rounded-md text-slate-50">
           Exisisting Clients
         </h2>
@@ -56,12 +62,12 @@ export const Clients = () => {
             </tr>
           </thead>
           <tbody className=" divide-y divide-slate-800">
-            {dummyClients.map((client) => (
+            {dummyClients.map((client, index) => (
               <tr
                 className="hover:bg-slate-800 hover:text-slate-50 transition-colors"
                 key={client._id}
               >
-                <td className="p-4">{client._id}</td>
+                <td className="p-4">{index+1}</td>
                 <td className="p-4">{client.clientName}</td>
                 <td className="p-4">{client.state}</td>
                 <td className="p-4">{client.createdAt}</td>
@@ -72,65 +78,85 @@ export const Clients = () => {
       </div>
 
       <div
-        className={`${displayForm ? "z-50" : "-z-50"} absolute top-20 right-40 bottom-20 left-40 flex justify-center items-center`}
+        className={`${displayForm ? "scale-100" : " scale-0"}  transition-all duration-1000 absolute border border-slate-300 shadow-lg backdrop-blur-2xl rounded-md py-5 top-28 px-20 left-1/2 -translate-x-1/2`}
       >
-        
-        <div
-          className={`${displayForm ? "scale-100 z-100" : "scale-0"} transition-transform duration-700 bg-slate-400 w-[40%] p-5 rounded-md`}
-        >
-          <form className="flex flex-col">
+        <div className="flex flex-col items-center">
+          <h2 className="text-lg font-semibold bg-slate-800 py-1 px-3 rounded-md text-slate-50">
+            Add New Client
+          </h2>
+          <p>Create a customer profile to generate quick invoices.</p>
+          <hr className=" border border-slate-800 w-full mt-4 mb-2 " />
+          <form onSubmit={handleOnSubmit} className="rounded-md text-slate-800">
             <Input
-              label="Client-Name"
-              id="clientName"
+              size="30"
               htmlFor="clientName"
-              placeholder="Enter Client name"
+              label="Client/Bussiness Name"
+              type="text"
               name="clientName"
+              id="clientName"
+              value={clientData.clientName}
+              placeholder="Enter Client/Bussiness Name"
+              onChange={handleOnChange}
             />
-            <Input
-              label="Email"
-              id="email"
-              htmlFor="email"
-              placeholder="Enter Email"
-              name="email"
-            />
-            <Input
-              label="Phone"
-              id="phone"
-              htmlFor="phone"
-              placeholder="Enter Phone No."
-              name="phone"
-            />
-            <Input
-              label="Gstin No."
-              id="gstin"
-              htmlFor="gstin"
-              placeholder="Enter GSTIN No."
-              name="gstin"
-            />
-            <div className="flex justify-between p-3 font-serif">
-              <label htmlFor="address">Address</label>
-              <textarea
-                id="address"
-                name="address"
-                placeholder="Enter Address"
-                className="px-2 py-1 resize-none focus:outline-none rounded-sm"
-                rows={4}
+
+            <div className="flex justify-between">
+              <Input
+                label="Email"
+                type="email"
+                id="email"
+                htmlFor="email"
+                name="email"
+                placeholder="xyz@email.com"
+                value={clientData.email}
+                onChange={handleOnChange}
+              />
+              <Input
+                label="Phone Number"
+                type="tel"
+                id="phone"
+                htmlFor="phone"
+                name="phone"
+                placeholder="8587868981"
+                value={clientData.phone}
+                onChange={handleOnChange}
               />
             </div>
-            <Input
-              label="State"
-              id="state"
-              htmlFor="state"
-              placeholder="i.e- Maharashtra"
-              name="state"
-            />
+            <div className="flex justify-between">
+              <Input
+                label="State"
+                id="state"
+                htmlFor="state"
+                name="state"
+                placeholder="Maharashtra"
+                value={clientData.state}
+                onChange={handleOnChange}
+              />
+              <Input
+                label="GSTIN(optional)"
+                id="gstin"
+                htmlFor="gstin"
+                name="gstin"
+                placeholder="27AAAAA1111A1Z1"
+                value={clientData.gstin}
+                onChange={handleOnChange}
+              />
+            </div>
+            <div className="flex flex-col px-3 py-1 gap-2 font-serif">
+              <label id="address">Address</label>
+              <textarea
+                rows="6"
+                htmlFor="address"
+                name="address"
+                className=" resize-none rounded-md focus:outline-none py-1 px-4"
+                value={clientData.address}
+                onChange={handleOnChange}
+              />
+            </div>
             <button
-              type="Submit"
-              className=" text-slate-50 px-3 py-1 rounded-sm mt-3"
+              type="submit"
+              className="bg-slate-900 text-slate-50 px-3 py-1 rounded-md w-full mt-4 font-semibold hover:bg-slate-700 hover:scale-95 transition-all"
             >
-              <span className="bg-slate-800 px-3 py-1 rounded-sm text-lg">
-                Add
-              </span>
+              Save Client
             </button>
           </form>
         </div>
@@ -138,4 +164,3 @@ export const Clients = () => {
     </div>
   );
 };
-
