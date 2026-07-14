@@ -26,7 +26,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="lg:hidden bg-slate-800 fixed flex text-slate-50 justify-between items-center px-5 py-4 h-20 w-full">
+    <div className="z-100 lg:hidden bg-slate-800 fixed flex text-slate-50 justify-between items-center px-5 py-4 h-20 w-full">
       <div>Logo</div>
 
       {/* navLinks for large screen size  */}

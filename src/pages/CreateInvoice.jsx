@@ -44,7 +44,7 @@ export const CreateInvoice = () => {
   };
 
   return (
-    <div className="p-5 bg-gradient-to-tr from-slate-100 via-slate-200 to-slate-400 h-screen overflow-auto ">
+    <div className="mt-16 lg:mt-0 p-5 bg-gradient-to-tr from-slate-100 via-slate-200 to-slate-400 h-screen overflow-auto ">
       <h1 className=" font-serif text-2xl font-semibold">Create Invoice</h1>
       <div className=" flex justify-evenly">
         <Input

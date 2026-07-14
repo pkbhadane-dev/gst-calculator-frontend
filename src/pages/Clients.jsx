@@ -38,7 +38,7 @@ export const Clients = () => {
   
 
   return (
-    <div className="relative h-screen bg-gradient-to-tr from-slate-100 via-slate-200 to-slate-400 p-5 overflow-auto">
+    <div className="mt-16 lg:mt-0 h-screen bg-gradient-to-tr from-slate-100 via-slate-200 to-slate-400 p-5 overflow-auto">
       <h1 className=" text-2xl font-semibold">Clients</h1>
       <div className="mt-4 flex justify-end pr-5">
         <span
