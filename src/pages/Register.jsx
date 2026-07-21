@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Input } from "../components/Input";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     businessName: "",
     email: "",
@@ -38,6 +41,8 @@ export const Register = () => {
       const result = response.json();
 
       console.log(result.data);
+
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
