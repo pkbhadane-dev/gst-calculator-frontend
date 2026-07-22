@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Input } from "../components/Input";
+import { loginUser } from "../api/loginUserApi";
 
 export const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,31 +14,10 @@ export const Login = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     loginUser();
   };
 
-  const loginUser = async () => {
-    const url = "http://localhost:3000/api/v1/user/login";
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error( response.message || "Failed to login", response);
-      }
-
-      const result = await response.json();
-
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ 
 
   return (
     <>

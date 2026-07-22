@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Input } from "../components/Input";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../api/registerUserApi";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -18,33 +19,18 @@ export const Register = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    registerUser();
-  };
-
-  const registerUser = async () => {
-    const url = "http://localhost:3000/api/v1/user/register";
-
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const { response, result } = await registerUser(formData);
 
-      if (!response.ok) {
-        throw new Error("Failed to post data", response);
+      if (response.ok) {
+        navigate("/login");
+      } else {
+        throw new Error(result.message || "Something went wrong");
       }
-      const result = response.json();
-
-      console.log(result.data);
-
-      navigate("/login");
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 
