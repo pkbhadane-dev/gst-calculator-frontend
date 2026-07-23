@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "../components/Input";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../api/registerUserApi";
+import { registerUserApi } from "../api/registerUserApi";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const Register = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { response, result } = await registerUser(formData);
+      const { response, result } = await registerUserApi(formData);
 
       if (response.ok) {
         navigate("/login");

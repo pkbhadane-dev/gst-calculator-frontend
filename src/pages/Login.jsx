@@ -1,23 +1,39 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Input } from "../components/Input";
-import { loginUser } from "../api/loginUserApi";
+import { loginUserApi } from "../api/loginUserApi";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/contextApi";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
+  const { user, loginUser } = useContext(AppContext);
+  console.log("user form useContext", user);
+
   const handleOnChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    loginUser();
-  };
 
- 
+    try {
+      const { response, result } = await loginUserApi(formData);
+
+      if (response.ok) {
+        loginUser(result);
+        navigate("/");
+      } else {
+        throw new Error(result.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>

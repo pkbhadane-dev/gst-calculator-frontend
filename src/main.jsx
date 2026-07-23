@@ -9,6 +9,7 @@ import { Clients } from "./pages/Clients.jsx";
 import { CreateInvoice } from "./pages/CreateInvoice.jsx";
 import { Login } from "./pages/Login.jsx";
 import { Register } from "./pages/Register.jsx";
+import { ContextProvider } from "./context/contextApi.jsx";
 
 const Router = createBrowserRouter([
   {
@@ -41,6 +42,8 @@ const Router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={Router} />
+    <ContextProvider>
+      <RouterProvider router={Router} />
+    </ContextProvider>
   </StrictMode>,
 );

@@ -1,4 +1,4 @@
-export const registerUser = async (formData) => {
+export const registerUserApi = async (formData) => {
   const url = "http://localhost:3000/api/v1/user/register";
 
   try {
