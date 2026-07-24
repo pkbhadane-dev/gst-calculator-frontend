@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Input } from "../components/Input";
 import { loginUserApi } from "../api/loginUserApi";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,12 @@ export const Login = () => {
     password: "",
   });
 
-  const { user, loginUser } = useContext(AppContext);
-  console.log("user form useContext", user);
+  const { user, loginUser, isAuthenticated } = useContext(AppContext);
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated, navigate]);
+  console.log(isAuthenticated , user);
 
   const handleOnChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -20,7 +24,6 @@ export const Login = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const { response, result } = await loginUserApi(formData);
 

@@ -4,7 +4,6 @@ import { Clients } from "./pages/Clients";
 import { CreateInvoice } from "./pages/CreateInvoice";
 import { Sidebar } from "./components/Sidebar";
 import { Navbar } from "./components/Navbar";
-import { ContextProvider } from "./context/contextApi";
 
 function App() {
   return (
@@ -12,9 +11,7 @@ function App() {
       <Navbar />
       <Sidebar />
       <main className="w-full">
-        <ContextProvider>
-          <Outlet />
-        </ContextProvider>
+        <Outlet />
       </main>
     </div>
   );
